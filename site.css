@@ -45,8 +45,8 @@ a{color:inherit}
 main{padding-top:72px}
 @media(min-width:1024px){main{padding-top:84px}}
 /* page hero */
-.phero{padding:64px 0 40px}
-@media(min-width:1024px){.phero{padding:110px 0 64px}}
+.phero{padding-top:64px;padding-bottom:40px}
+@media(min-width:1024px){.phero{padding-top:110px;padding-bottom:64px}}
 .phero h1{font-size:clamp(44px,7vw,104px);margin-top:18px;max-width:14ch}
 .phero-row{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
 /* blog list */
