@@ -79,3 +79,5 @@ a:hover h2,a:hover h3{text-decoration-color:currentColor}
 .art-more-head h2{font-size:clamp(26px,2.6vw,36px);font-weight:560;letter-spacing:-.03em;margin:0}
 .art-more-head>a{font-size:14.5px;font-weight:500;color:var(--teal)}
 @media(max-width:719px){.art-more .bl-grid{border-top:1px solid var(--line);margin-top:16px}}
+@media(max-width:719px){.art-meta{font-size:13.5px}.art-meta>*+*::before{margin:0 8px 3px}.bl-item .bl-img img{object-position:left center}}
+.art-meta>*{white-space:nowrap}
