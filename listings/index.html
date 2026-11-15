@@ -15,7 +15,8 @@ description: Browse current rental listings from Candescent Property Management 
 </section>
 <section class="wrap" aria-label="Available rentals">
   <div class="dl-wrap">
-    <div class="doorloop-container" data-custom-element-id="doorloopIframe" data-company-id="667f1a5d28d88c0445d30dd6" data-property-ids="" data-single-listing-mode="" data-listing-id="" data-width="100%" data-height="100vh" data-background="#ffffff"></div>
+    <!-- Same iframe DoorLoop's Listing SDK (listing-sdk.min.js) creates; written directly so it also loads where the SDK script is blocked -->
+    <iframe id="doorloopIframe" title="Available rentals from Candescent Property Management" src="https://app.doorloop.com/listings?companyId=667f1a5d28d88c0445d30dd6" style="width:100%;height:100vh" loading="eager"></iframe>
   </div>
   <div class="dl-foot">
     <p>Listings not loading? Open them directly on our secure DoorLoop page.</p>
@@ -51,4 +52,3 @@ window.addEventListener("message", function (event) {
   }
 });
 </script>
-<script src="https://app.doorloop.com/packages/listing-sdk.min.js" defer async></script>
