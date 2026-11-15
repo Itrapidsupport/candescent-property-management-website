@@ -17,7 +17,7 @@
 {% if page.image %}<meta property="og:image" content="{{ site.url }}{{ page.image }}">{% endif %}
 <link rel="preload" href="{{ '/fonts/geist.woff2' | relative_url }}" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="{{ '/site.css' | relative_url }}?v=6">
-{% if page.nav == 'blog' %}<link rel="stylesheet" href="{{ '/blog.css' | relative_url }}?v={{ site.time | date: '%s' }}">{% endif %}
+{% if page.nav == 'blog' or page.layout == 'post' %}<link rel="stylesheet" href="{{ '/blog.css' | relative_url }}?v={{ site.time | date: '%s' }}">{% endif %}
 </head>
 <body class="pg-{{ page.slug_class | default: 'page' }}">
 <a class="skip" href="#main">Skip to content</a>
@@ -29,7 +29,7 @@
       <a href="{{ '/#about' | relative_url }}">About</a>
       <a href="{{ '/#team' | relative_url }}">Team</a>
       <a href="{{ '/listings/' | relative_url }}"{% if page.nav == 'listings' %} aria-current="page"{% endif %}>Listings</a>
-      <a href="{{ '/blog/' | relative_url }}"{% if page.nav == 'blog' %} aria-current="page"{% endif %}>Blog</a>
+      <a href="{{ '/blog/' | relative_url }}"{% if page.nav == 'blog' or page.layout == 'post' %} aria-current="page"{% endif %}>Blog</a>
       <a href="{{ '/faq/' | relative_url }}"{% if page.nav == 'faq' %} aria-current="page"{% endif %}>FAQ</a>
       <a href="{{ '/#contact' | relative_url }}">Contact</a>
     </nav>
