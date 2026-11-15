@@ -233,3 +233,8 @@ button.btn-solid{background:var(--night);color:var(--paper)}
  .lbar-sort{grid-column:2;grid-row:2}
  .sel select{padding-left:14px;padding-right:34px}
 }
+
+.ldlg{align-items:flex-start}
+.ld-in{margin:auto}
+.ld-stage{height:min(54vh,560px)}
+@media(max-width:600px){.ld-stage{height:auto}}
