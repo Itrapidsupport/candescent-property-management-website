@@ -1,0 +1,44 @@
+# Candescent website editor (Sveltia CMS, free and open source)
+# Editor URL: <site>/admin/   Posts are saved to _posts/ in the site repo; GitHub Pages rebuilds the site automatically.
+backend:
+  name: github
+  repo: Itrapidsupport/candescent-property-management-website
+  branch: main
+  commit_messages:
+    create: "Blog: add {{slug}}"
+    update: "Blog: update {{slug}}"
+    delete: "Blog: delete {{slug}}"
+    uploadMedia: "Blog: upload {{path}}"
+    deleteMedia: "Blog: delete {{path}}"
+
+site_url: https://itrapidsupport.github.io/candescent-property-management-website/
+display_url: https://itrapidsupport.github.io/candescent-property-management-website/
+logo_url: https://itrapidsupport.github.io/candescent-property-management-website/brand/mark.svg
+
+# At domain go-live: change public_folder to /img/blog (and baseurl in _config.yml to "").
+media_folder: img/blog
+public_folder: /candescent-property-management-website/img/blog
+
+collections:
+  - name: blog
+    label: Blog posts
+    label_singular: Blog post
+    description: Write a new article for the Blog page. Click Save to publish; the live site updates in about a minute.
+    folder: _posts
+    create: true
+    delete: true
+    extension: md
+    format: frontmatter
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    summary: "{{title}}{{editor_note}}"
+    sortable_fields: [date, title]
+    preview_path: "blog/{{slug}}/"
+    fields:
+      - { label: Layout, name: layout, widget: hidden, default: post }
+      - { label: Title, name: title, widget: string }
+      - { label: Publish date, name: date, widget: datetime, format: "YYYY-MM-DD", time_format: false }
+      - { label: Short summary, name: description, widget: text, hint: "One or two sentences. Shown on the Blog page card." }
+      - { label: Cover image, name: image, widget: image, hint: "Landscape photo, at least 1600 pixels wide." }
+      - { label: Cover image description, name: image_alt, widget: string, required: false, hint: "Describe the photo for screen readers." }
+      - { label: Article, name: body, widget: markdown }
+      - { label: Editor note, name: editor_note, widget: hidden, default: "", required: false }

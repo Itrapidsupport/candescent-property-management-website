@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en-CA">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>{% if page.title %}{{ page.title }} | {% endif %}Candescent Property Management</title>
+<meta name="description" content="{{ page.description | default: site.description | strip_html | strip_newlines | truncate: 160 }}">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#20404C">
+<link rel="icon" type="image/svg+xml" href="{{ '/brand/mark.svg' | relative_url }}">
+<link rel="apple-touch-icon" href="{{ '/brand/apple-touch-icon.png' | relative_url }}">
+<meta property="og:title" content="{{ page.title | default: site.title }}">
+<meta property="og:description" content="{{ page.description | default: site.description | strip_html | strip_newlines | truncate: 200 }}">
+{% if page.image %}<meta property="og:image" content="{{ site.url }}{{ page.image }}">{% endif %}
+<link rel="preload" href="{{ '/fonts/geist.woff2' | relative_url }}" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="{{ '/site.css' | relative_url }}?v=2">
+</head>
+<body class="pg-{{ page.slug_class | default: 'page' }}">
+<a class="skip" href="#main">Skip to content</a>
+<header class="hdr">
+  <div class="hdr-in">
+    <a class="hdr-logo" href="{{ '/' | relative_url }}" aria-label="Candescent Property Management, home"><img src="{{ '/brand/lockup.svg' | relative_url }}" alt="Candescent Property Management" width="221" height="40"></a>
+    <nav class="hdr-nav" aria-label="Primary">
+      <a href="{{ '/#services' | relative_url }}">Services</a>
+      <a href="{{ '/#about' | relative_url }}">About</a>
+      <a href="{{ '/#team' | relative_url }}">Team</a>
+      <a href="{{ '/listings/' | relative_url }}"{% if page.nav == 'listings' %} aria-current="page"{% endif %}>Listings</a>
+      <a href="{{ '/blog/' | relative_url }}"{% if page.nav == 'blog' %} aria-current="page"{% endif %}>Blog</a>
+      <a href="{{ '/faq/' | relative_url }}"{% if page.nav == 'faq' %} aria-current="page"{% endif %}>FAQ</a>
+      <a href="{{ '/#contact' | relative_url }}">Contact</a>
+    </nav>
+    <div class="hdr-cta">
+      <a class="btn btn-ghost hide-sm" href="https://candescentpm.app.doorloop.com/" target="_blank" rel="noopener">Portal Login</a>
+      <a class="btn btn-solid" href="https://candescentpm.app.doorloop.com/tenant-portal/rental-applications/listing?companyId=667f1a5d28d88c0445d30dd6&amp;source=CompanyLink" target="_blank" rel="noopener">Apply Now</a>
+      <button class="hdr-burger" type="button" aria-expanded="false" aria-controls="mnav" aria-label="Open menu"><span></span><span></span></button>
+    </div>
+  </div>
+  <div class="mnav" id="mnav" hidden>
+    <nav aria-label="Mobile">
+      <a href="{{ '/' | relative_url }}">Home</a>
+      <a href="{{ '/#services' | relative_url }}">Services</a>
+      <a href="{{ '/listings/' | relative_url }}">Listings</a>
+      <a href="{{ '/blog/' | relative_url }}">Blog</a>
+      <a href="{{ '/faq/' | relative_url }}">FAQ</a>
+      <a href="{{ '/#contact' | relative_url }}">Contact</a>
+    </nav>
+    <p class="mnav-contact"><a href="tel:+15874670570">(587) 467-0570</a><br><a href="mailto:hello@hintonrentals.com">hello@hintonrentals.com</a></p>
+    <a class="btn btn-ghost" href="https://candescentpm.app.doorloop.com/" target="_blank" rel="noopener">Portal Login</a>
+  </div>
+</header>
+<main id="main">
+{{ content }}
+</main>
+<footer class="ftr">
+  <div class="wrap ftr-grid">
+    <div class="ftr-about">
+      <img src="{{ '/brand/lockup-reversed.svg' | relative_url }}" alt="Candescent Property Management" width="265" height="48">
+      <p>We offer expert services and dedicated support to clients ensuring exceptional results and customer satisfaction.</p>
+    </div>
+    <div>
+      <p class="kicker">Explore</p>
+      <ul>
+        <li><a href="{{ '/#services' | relative_url }}">Services</a></li>
+        <li><a href="{{ '/listings/' | relative_url }}">Listings</a></li>
+        <li><a href="{{ '/blog/' | relative_url }}">Blog</a></li>
+        <li><a href="{{ '/faq/' | relative_url }}">FAQ</a></li>
+        <li><a href="{{ '/#contact' | relative_url }}">Contact</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="kicker">Tenants</p>
+      <ul>
+        <li><a href="https://candescentpm.app.doorloop.com/tenant-portal/rental-applications/listing?companyId=667f1a5d28d88c0445d30dd6&amp;source=CompanyLink" target="_blank" rel="noopener">Apply Now</a></li>
+        <li><a href="https://candescentpm.app.doorloop.com/" target="_blank" rel="noopener">Portal Login</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="kicker">Contact info</p>
+      <address>#8 - 566 Switzer Drive<br>Hinton, AB T7V 1G7<br><a href="tel:+15874670570">(587) 467-0570</a><br><a href="mailto:hello@hintonrentals.com">hello@hintonrentals.com</a></address>
+    </div>
+  </div>
+  <div class="wrap ftr-base"><p>© {{ site.time | date: '%Y' }} Candescent Property Management · Licensed by RECA</p><p>Hinton, Alberta</p></div>
+</footer>
+<script src="{{ '/site.js' | relative_url }}" defer></script>
+</body>
+</html>

@@ -1,0 +1,54 @@
+---
+layout: default
+title: Rental listings in Hinton
+nav: listings
+description: Browse current rental listings from Candescent Property Management in Hinton, Alberta, and apply online.
+---
+<section class="wrap phero">
+  <p class="kicker rise">Listings</p>
+  <h1 class="display rise d1">Find your next home in Hinton.</h1>
+  <p class="lede rise d2">Browse our available rentals below. Every listing is live from our property management system, so what you see is what is available today.</p>
+  <div class="phero-row rise d3">
+    <a class="btn btn-solid btn-lg" href="https://candescentpm.app.doorloop.com/tenant-portal/rental-applications/listing?companyId=667f1a5d28d88c0445d30dd6&amp;source=CompanyLink" target="_blank" rel="noopener">Apply Now</a>
+    <a class="btn btn-ghost btn-lg" href="tel:+15874670570">Call (587) 467-0570</a>
+  </div>
+</section>
+<section class="wrap" aria-label="Available rentals">
+  <div class="dl-wrap">
+    <div class="doorloop-container" data-custom-element-id="doorloopIframe" data-company-id="667f1a5d28d88c0445d30dd6" data-property-ids="" data-single-listing-mode="" data-listing-id="" data-width="100%" data-height="100vh" data-background="#ffffff"></div>
+  </div>
+  <div class="dl-foot">
+    <p>Listings not loading? Open them directly on our secure DoorLoop page.</p>
+    <a class="btn btn-ghost" href="https://doorloop.com/tenant-portal/rental-applications/listing?companyId=667f1a5d28d88c0445d30dd6&amp;source=CompanyLink" target="_blank" rel="noopener">View all listings ↗</a>
+  </div>
+  <div class="steps">
+    <div class="step"><b>01</b><h3>Browse</h3><p>Open any listing above to see photos, rent, availability and details.</p></div>
+    <div class="step"><b>02</b><h3>Apply online</h3><p>Submit your application through our secure DoorLoop portal.</p></div>
+    <div class="step"><b>03</b><h3>Move in</h3><p>Once approved, use the tenant portal to pay rent and report maintenance.</p></div>
+  </div>
+  <div class="band">
+    <div><p class="kicker">Questions first?</p><h2>Read our renter FAQ or give us a call.</h2></div>
+    <div class="btns"><a class="btn btn-peach btn-lg" href="{{ '/faq/' | relative_url }}">Renter FAQ</a><a class="btn btn-ghost btn-lg" href="tel:+15874670570">(587) 467-0570</a></div>
+  </div>
+</section>
+<script>
+// DoorLoop Listing SDK height handshake (DoorLoop's own snippet, as used on hintonrentals.com/listings)
+var shouldSendHandshake = true, prevHeight = 0;
+window.addEventListener("message", function (event) {
+  var d = event.data || {};
+  var f = document.getElementById("doorloopIframe");
+  if (d.type === "DOORLOOP_LISTINGS_SCREEN") {
+    if (f && f.style && d.data) f.style.height = (d.data.screenHeight + 450) + "px";
+  } else if (d.type === "DOORLOOP_LISTINGS_ITEM_CLICK") {
+    prevHeight = window.scrollY;
+    if (f) window.scrollTo({ top: f.getBoundingClientRect().top + window.scrollY - 100, behavior: "instant" });
+  } else if (d.type === "DOORLOOP_LISTINGS_DETAILS_MESSAGE_CLOSED") {
+    window.scrollTo({ top: prevHeight, behavior: "instant" });
+  }
+  if (shouldSendHandshake && f && f.contentWindow) {
+    shouldSendHandshake = false;
+    f.contentWindow.postMessage({ type: "DOORLOOP_SITES_DATA", data: { parentInnerHeight: window.innerHeight } }, "*");
+  }
+});
+</script>
+<script src="https://app.doorloop.com/packages/listing-sdk.min.js" defer async></script>

@@ -1,0 +1,30 @@
+---
+layout: default
+title: Blog
+nav: blog
+description: Practical notes on renting and property management in Hinton, Alberta, from Candescent Property Management.
+---
+<section class="wrap phero">
+  <p class="kicker rise">Blog</p>
+  <h1 class="display rise d1">Notes for renters and owners.</h1>
+  <p class="lede rise d2">Practical guidance on renting, moving and managing property in Hinton and the Alberta foothills.</p>
+</section>
+<section class="wrap" aria-label="Articles">
+  {% if site.posts.size > 0 %}
+  <div class="cards">
+    {% for post in site.posts %}
+    <a class="card{% if forloop.first %} feat{% endif %} rise d{{ forloop.index | at_most: 3 }}" href="{{ post.url | relative_url }}">
+      <div class="card-img">{% if post.image %}<img src="{{ post.image }}" alt="{{ post.image_alt | default: '' }}" width="1600" height="900" loading="{% if forloop.first %}eager{% else %}lazy{% endif %}">{% endif %}</div>
+      <div>
+        <p class="kicker">{{ post.date | date: '%B %-d, %Y' }}</p>
+        <h2>{{ post.title }}</h2>
+        <p class="ex">{{ post.description | default: post.excerpt | strip_html | truncate: 170 }}</p>
+        <span class="more">Read article →</span>
+      </div>
+    </a>
+    {% endfor %}
+  </div>
+  {% else %}
+  <p class="empty">New articles are on the way.</p>
+  {% endif %}
+</section>

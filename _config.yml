@@ -1,0 +1,14 @@
+title: Candescent Property Management
+description: RECA-licensed property management brokerage in Hinton, Alberta.
+# Preview lives under the repo path. At domain go-live set baseurl to "" and update admin/config.yml public_folder.
+baseurl: /candescent-property-management-website
+url: https://itrapidsupport.github.io
+timezone: America/Edmonton
+permalink: /blog/:title/
+future: true
+markdown: kramdown
+kramdown:
+  input: GFM
+  hard_wrap: false
+exclude:
+  - README.md
