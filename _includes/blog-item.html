@@ -1,0 +1,11 @@
+{%- assign _p = include.post -%}
+{%- assign _wc = _p.content | strip_html | number_of_words -%}
+{%- assign _min = _wc | plus: 199 | divided_by: 200 -%}
+<a class="bl-item" href="{{ _p.url | relative_url }}">
+  <div class="bl-img">{% if _p.image %}{% include blog-img.html src=_p.image alt=_p.image_alt sizes="(min-width: 1100px) 420px, (min-width: 720px) 45vw, 120px" %}{% endif %}</div>
+  <div class="bl-txt">
+    <p class="bl-meta"><time datetime="{{ _p.date | date: '%Y-%m-%d' }}">{{ _p.date | date: '%B %-d, %Y' }}</time><span>{{ _min }} min read</span></p>
+    <h3>{{ _p.title }}</h3>
+    <p class="bl-ex">{{ _p.description | default: _p.excerpt | strip_html | strip_newlines }}</p>
+  </div>
+</a>

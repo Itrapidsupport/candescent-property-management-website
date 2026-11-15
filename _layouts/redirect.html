@@ -1,0 +1,14 @@
+<!doctype html>
+<html lang="en-CA">
+<head>
+<meta charset="utf-8">
+<title>{{ page.title | default: 'Moved' }} | Candescent Property Management</title>
+<meta name="robots" content="noindex">
+<link rel="canonical" href="{{ page.to | absolute_url }}">
+<meta http-equiv="refresh" content="0; url={{ page.to | relative_url }}">
+<script>location.replace({{ page.to | relative_url | jsonify }} + location.hash);</script>
+</head>
+<body>
+<p>This article has moved: <a href="{{ page.to | relative_url }}">{{ page.title | default: 'continue to the new page' }}</a>.</p>
+</body>
+</html>

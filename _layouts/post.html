@@ -2,26 +2,39 @@
 layout: default
 nav: blog
 ---
-<article class="post">
-  <header class="wrap post-head rise">
-    <a class="back" href="{{ '/blog/' | relative_url }}">← All articles</a>
-    <p class="kicker">{{ page.date | date: '%B %-d, %Y' }}</p>
-    <h1 class="display">{{ page.title }}</h1>
-    {% if page.description %}<p class="lede">{{ page.description }}</p>{% endif %}
+{%- assign _wc = content | strip_html | number_of_words -%}
+{%- assign _min = _wc | plus: 199 | divided_by: 200 -%}
+{%- assign _author = page.author | default: 'Charlene Jegen' -%}
+<article class="art">
+  <header class="art-head">
+    <a class="art-back" href="{{ '/blog/' | relative_url }}"><span aria-hidden="true">←</span> All articles</a>
+    <h1 class="art-title rise">{{ page.title }}</h1>
+    <p class="art-meta rise d1"><span>By {{ _author }}</span><time datetime="{{ page.date | date: '%Y-%m-%d' }}">{{ page.date | date: '%B %-d, %Y' }}</time><span>{{ _min }} min read</span></p>
   </header>
   {% if page.image %}
-  <figure class="wrap post-cover rise">
-    <img src="{{ page.image }}" alt="{{ page.image_alt | default: '' }}" width="1600" height="900">
+  <figure class="art-cover rise d2">
+    {% include blog-img.html src=page.image alt=page.image_alt sizes="(min-width: 1120px) 1040px, 100vw" loading="eager" priority=true %}
+    {% if page.image_caption %}<figcaption>{{ page.image_caption }}</figcaption>{% endif %}
   </figure>
   {% endif %}
-  <div class="prose">
+  <div class="art-body">
     {{ content }}
   </div>
-  <aside class="wrap post-cta">
+  <aside class="art-cta">
     <div>
       <p class="kicker">Questions about renting or managing in Hinton?</p>
-      <p class="post-cta-line">Call <a href="tel:+15874670570">(587) 467-0570</a> or email <a href="mailto:hello@hintonrentals.com">hello@hintonrentals.com</a>.</p>
+      <p class="art-cta-line">Call <a href="tel:+15874670570">(587) 467-0570</a> or email <a href="mailto:hello@hintonrentals.com">hello@hintonrentals.com</a>.</p>
     </div>
-    <a class="btn btn-solid" href="{{ '/listings/' | relative_url }}">See current listings</a>
+    <a class="btn btn-solid" href="{{ '/#contact' | relative_url }}">Talk to our team</a>
   </aside>
 </article>
+{%- assign _more = site.posts | where_exp: "p", "p.url != page.url" -%}
+{% if _more.size > 0 %}
+<section class="wrap art-more" aria-labelledby="more-h">
+  <div class="art-more-head"><h2 id="more-h">More articles</h2><a href="{{ '/blog/' | relative_url }}">View all <span aria-hidden="true">→</span></a></div>
+  <div class="bl-grid">
+    {% for post in _more limit: 3 %}{% include blog-item.html post=post %}{% endfor %}
+  </div>
+</section>
+{% endif %}
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":{{ page.title | jsonify }},"description":{{ page.description | default: '' | jsonify }},"datePublished":"{{ page.date | date: '%Y-%m-%d' }}","author":{"@type":"Person","name":{{ _author | jsonify }}},"publisher":{"@type":"Organization","name":"Candescent Property Management"},{% if page.image %}"image":"{{ site.url }}{{ page.image }}",{% endif %}"mainEntityOfPage":"{{ page.url | absolute_url }}"}</script>

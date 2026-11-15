@@ -1,0 +1,9 @@
+{%- comment -%}Responsive cover image. Migrated images have WebP variants listed in _data/blog_images.yml; editor uploads fall back to a plain img.{%- endcomment -%}
+{%- assign _name = include.src | split: '/' | last | split: '.webp' | first -%}
+{%- assign _d = site.data.blog_images[_name] -%}
+{%- assign _dir = include.src | split: _name | first -%}
+{%- if _d -%}
+<img src="{{ include.src }}" srcset="{% for w in _d.widths %}{{ _dir }}{{ _name }}-{{ w }}.webp {{ w }}w, {% endfor %}{{ include.src }} {{ _d.w }}w" sizes="{{ include.sizes | default: '100vw' }}" width="{{ _d.w }}" height="{{ _d.h }}" alt="{{ include.alt | escape }}" loading="{{ include.loading | default: 'lazy' }}" decoding="async"{% if include.priority %} fetchpriority="high"{% endif %}>
+{%- else -%}
+<img src="{{ include.src }}" alt="{{ include.alt | escape }}" loading="{{ include.loading | default: 'lazy' }}" decoding="async">
+{%- endif -%}

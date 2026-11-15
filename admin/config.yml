@@ -40,5 +40,6 @@ collections:
       - { label: Short summary, name: description, widget: text, hint: "One or two sentences. Shown on the Blog page card." }
       - { label: Cover image, name: image, widget: image, hint: "Landscape photo, at least 1600 pixels wide." }
       - { label: Cover image description, name: image_alt, widget: string, required: false, hint: "Describe the photo for screen readers." }
+      - { label: Author, name: author, widget: string, default: "Charlene Jegen", required: false }
       - { label: Article, name: body, widget: markdown }
       - { label: Editor note, name: editor_note, widget: hidden, default: "", required: false }

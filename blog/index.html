@@ -2,28 +2,32 @@
 layout: default
 title: Blog
 nav: blog
-description: Practical notes on renting and property management in Hinton, Alberta, from Candescent Property Management.
+description: Articles on property management, rentals and investing in Hinton, Alberta, from Charlene Jegen and the Candescent Property Management team.
 ---
-<section class="wrap phero">
+<section class="wrap bl-hero">
   <p class="kicker rise">Blog</p>
   <h1 class="display rise d1">Notes for renters and owners.</h1>
-  <p class="lede rise d2">Practical guidance on renting, moving and managing property in Hinton and the Alberta foothills.</p>
+  <p class="lede rise d2">Straight talk on renting, managing and investing in property in Hinton and the Alberta foothills, from Charlene Jegen and the Candescent team.</p>
 </section>
-<section class="wrap" aria-label="Articles">
+<section class="wrap bl" aria-label="Articles">
   {% if site.posts.size > 0 %}
-  <div class="cards">
-    {% for post in site.posts %}
-    <a class="card{% if forloop.first %} feat{% endif %} rise d{{ forloop.index | at_most: 3 }}" href="{{ post.url | relative_url }}">
-      <div class="card-img">{% if post.image %}<img src="{{ post.image }}" alt="{{ post.image_alt | default: '' }}" width="1600" height="900" loading="{% if forloop.first %}eager{% else %}lazy{% endif %}">{% endif %}</div>
-      <div>
-        <p class="kicker">{{ post.date | date: '%B %-d, %Y' }}</p>
-        <h2>{{ post.title }}</h2>
-        <p class="ex">{{ post.description | default: post.excerpt | strip_html | truncate: 170 }}</p>
-        <span class="more">Read article →</span>
-      </div>
-    </a>
-    {% endfor %}
+  {% assign lead = site.posts.first %}
+  {% assign _wc = lead.content | strip_html | number_of_words %}{% assign _min = _wc | plus: 199 | divided_by: 200 %}
+  <a class="bl-feat rise d2" href="{{ lead.url | relative_url }}">
+    <div class="bl-feat-img">{% if lead.image %}{% include blog-img.html src=lead.image alt=lead.image_alt sizes="(min-width: 1100px) 760px, 100vw" loading="eager" priority=true %}{% endif %}</div>
+    <div class="bl-feat-txt">
+      <p class="bl-meta"><span class="bl-latest">Latest</span><time datetime="{{ lead.date | date: '%Y-%m-%d' }}">{{ lead.date | date: '%B %-d, %Y' }}</time><span>{{ _min }} min read</span></p>
+      <h2>{{ lead.title }}</h2>
+      <p class="bl-ex">{{ lead.description | default: lead.excerpt | strip_html | strip_newlines }}</p>
+      <span class="bl-more">Read the article <span aria-hidden="true">→</span></span>
+    </div>
+  </a>
+  {% if site.posts.size > 1 %}
+  <h2 class="bl-sec">All articles</h2>
+  <div class="bl-grid">
+    {% for post in site.posts offset: 1 %}{% include blog-item.html post=post %}{% endfor %}
   </div>
+  {% endif %}
   {% else %}
   <p class="empty">New articles are on the way.</p>
   {% endif %}
