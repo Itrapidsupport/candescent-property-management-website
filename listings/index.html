@@ -1,30 +1,41 @@
 ---
 layout: default
-title: Rental listings in Hinton
+title: Homes for rent in Hinton
 nav: listings
-description: Browse current rental listings from Candescent Property Management in Hinton, Alberta, and apply online.
+description: Browse homes for rent in Hinton, Alberta from Candescent Property Management. Live listings, photos, rent and availability, with online applications.
 ---
-<section class="wrap phero">
-  <p class="kicker rise">Listings</p>
-  <h1 class="display rise d1">Find your next home in Hinton.</h1>
-  <p class="lede rise d2">Browse our available rentals below. Every listing is live from our property management system, so what you see is what is available today.</p>
-  <div class="phero-row rise d3">
-    <a class="btn btn-solid btn-lg" href="https://candescentpm.app.doorloop.com/tenant-portal/rental-applications/listing?companyId=667f1a5d28d88c0445d30dd6&amp;source=CompanyLink" target="_blank" rel="noopener">Apply Now</a>
-    <a class="btn btn-ghost btn-lg" href="tel:+15874670570">Call (587) 467-0570</a>
+<section class="wrap phero lhero">
+  <div>
+    <p class="kicker rise">Listings</p>
+    <h1 class="display rise d1">Homes for rent in Hinton.</h1>
+  </div>
+  <div class="lhero-side rise d2">
+    <p class="lede">Every home below comes straight from our listings system, so what you see is what is available. Apply online in minutes.</p>
+    <p class="llive"><span class="dot" aria-hidden="true"></span><span id="lcount">Loading homes</span></p>
   </div>
 </section>
-<section class="wrap" aria-label="Available rentals">
-  <div class="dl-wrap">
-    <!-- Same iframe DoorLoop's Listing SDK (listing-sdk.min.js) creates; written directly so it also loads where the SDK script is blocked -->
-    <iframe id="doorloopIframe" title="Available rentals from Candescent Property Management" src="https://app.doorloop.com/listings?companyId=667f1a5d28d88c0445d30dd6" style="width:100%;height:100vh" loading="eager"></iframe>
+<section class="wrap" aria-label="Available homes">
+  <div class="lbar rise d3" role="group" aria-label="Filter homes">
+    <div class="lbar-grp"><span class="lbar-lab" id="lb-beds">Bedrooms</span>
+      <div class="seg" role="group" aria-labelledby="lb-beds">
+        <button type="button" data-beds="0" aria-pressed="true">Any</button><button type="button" data-beds="1" aria-pressed="false">1+</button><button type="button" data-beds="2" aria-pressed="false">2+</button><button type="button" data-beds="3" aria-pressed="false">3+</button>
+      </div></div>
+    <label class="lbar-grp"><span class="lbar-lab">Max rent</span>
+      <span class="sel"><select id="lmax"><option value="0">Any price</option><option value="1500">Up to $1,500</option><option value="2000">Up to $2,000</option><option value="2500">Up to $2,500</option><option value="3000">Up to $3,000</option></select></span></label>
+    <div class="lbar-grp"><span class="lbar-lab">Move-in</span><button type="button" class="tgl" id="lnow" aria-pressed="false"><span class="tgl-k" aria-hidden="true"></span>Available now</button></div>
+    <label class="lbar-grp lbar-sort"><span class="lbar-lab">Sort</span>
+      <span class="sel"><select id="lsort"><option value="avail">Soonest available</option><option value="low">Rent: low to high</option><option value="high">Rent: high to low</option></select></span></label>
+  </div>
+  <div class="lgrid" id="lgrid" aria-live="polite" aria-busy="true">
+    <noscript>{% include listings-noscript.html %}</noscript>
   </div>
   <div class="dl-foot">
-    <p>Listings not loading? Open them directly on our secure DoorLoop page.</p>
+    <p>Prefer the full portal? See every listing on our secure DoorLoop page.</p>
     <a class="btn btn-ghost" href="https://doorloop.com/tenant-portal/rental-applications/listing?companyId=667f1a5d28d88c0445d30dd6&amp;source=CompanyLink" target="_blank" rel="noopener">View all listings ↗</a>
   </div>
   <div class="steps">
-    <div class="step"><b>01</b><h3>Browse</h3><p>Open any listing above to see photos, rent, availability and details.</p></div>
-    <div class="step"><b>02</b><h3>Apply online</h3><p>Submit your application through our secure DoorLoop portal.</p></div>
+    <div class="step"><b>01</b><h3>Browse</h3><p>Swipe through photos and open any home for the full description.</p></div>
+    <div class="step"><b>02</b><h3>Apply online</h3><p>Apply now takes you to that home's secure DoorLoop application.</p></div>
     <div class="step"><b>03</b><h3>Move in</h3><p>Once approved, use the tenant portal to pay rent and report maintenance.</p></div>
   </div>
   <div class="band">
@@ -32,23 +43,6 @@ description: Browse current rental listings from Candescent Property Management 
     <div class="btns"><a class="btn btn-peach btn-lg" href="{{ '/faq/' | relative_url }}">Renter FAQ</a><a class="btn btn-ghost btn-lg" href="tel:+15874670570">(587) 467-0570</a></div>
   </div>
 </section>
-<script>
-// DoorLoop Listing SDK height handshake (DoorLoop's own snippet, as used on hintonrentals.com/listings)
-var shouldSendHandshake = true, prevHeight = 0;
-window.addEventListener("message", function (event) {
-  var d = event.data || {};
-  var f = document.getElementById("doorloopIframe");
-  if (d.type === "DOORLOOP_LISTINGS_SCREEN") {
-    if (f && f.style && d.data) f.style.height = (d.data.screenHeight + 450) + "px";
-  } else if (d.type === "DOORLOOP_LISTINGS_ITEM_CLICK") {
-    prevHeight = window.scrollY;
-    if (f) window.scrollTo({ top: f.getBoundingClientRect().top + window.scrollY - 100, behavior: "instant" });
-  } else if (d.type === "DOORLOOP_LISTINGS_DETAILS_MESSAGE_CLOSED") {
-    window.scrollTo({ top: prevHeight, behavior: "instant" });
-  }
-  if (shouldSendHandshake && f && f.contentWindow) {
-    shouldSendHandshake = false;
-    f.contentWindow.postMessage({ type: "DOORLOOP_SITES_DATA", data: { parentInnerHeight: window.innerHeight } }, "*");
-  }
-});
-</script>
+<div class="ldlg" id="ldlg" role="dialog" aria-modal="true" hidden></div>
+{% include listings-snapshot.html %}
+<script src="{{ '/listings/listings.js' | relative_url }}?v=1" defer></script>
