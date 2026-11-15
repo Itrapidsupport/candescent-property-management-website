@@ -16,7 +16,7 @@
 <meta property="og:description" content="{{ page.description | default: site.description | strip_html | strip_newlines | truncate: 200 }}">
 {% if page.image %}<meta property="og:image" content="{{ site.url }}{{ page.image }}">{% endif %}
 <link rel="preload" href="{{ '/fonts/geist.woff2' | relative_url }}" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="{{ '/site.css' | relative_url }}?v=4">
+<link rel="stylesheet" href="{{ '/site.css' | relative_url }}?v=5">
 {% if page.nav == 'blog' %}<link rel="stylesheet" href="{{ '/blog.css' | relative_url }}?v={{ site.time | date: '%s' }}">{% endif %}
 </head>
 <body class="pg-{{ page.slug_class | default: 'page' }}">

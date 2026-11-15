@@ -217,3 +217,19 @@ main{padding-top:72px}
 .ld-side .lc-rent{margin-bottom:4px}
 .ld-dep{margin:0 0 10px;font-size:14.5px;color:color-mix(in oklab,var(--ink) 62%,transparent)}
 @media(max-width:600px){.ldlg{padding:0}.ld-in{border-radius:0;min-height:100%;padding:0 0 20px}.ld-stage{border-radius:0}.ld-close{right:12px;top:12px}.ld-thumbs{padding-left:12px;padding-right:12px}.ld-nav{display:none}}
+
+/* polish pass */
+button.btn{font:inherit;font-size:14px;font-weight:500;cursor:pointer;border:0;color:inherit}
+button.btn-ghost{background:transparent;border:1px solid color-mix(in oklab,var(--ink) 20%,transparent);color:var(--ink)}
+button.btn-ghost:hover{background:var(--ink);color:var(--paper)}
+button.btn-solid{background:var(--night);color:var(--paper)}
+.ldlg{align-items:center}
+.ld-stage{aspect-ratio:auto;height:min(60vh,620px)}
+@media(max-width:600px){.ldlg{align-items:flex-start}.ld-stage{height:auto;aspect-ratio:4/3}}
+@media(max-width:719px){
+ .lbar{display:grid;grid-template-columns:1fr 1fr;gap:14px 12px;padding:16px}
+ .lbar-grp:first-child{grid-column:1/-1}.lbar-grp:nth-child(3){grid-column:1/-1;grid-row:3}
+ .lbar-grp{width:auto}
+ .lbar-sort{grid-column:2;grid-row:2}
+ .sel select{padding-left:14px;padding-right:34px}
+}
